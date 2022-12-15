@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: api
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8484/auth/realms/Clevertec
+
+api:
+  service:
+    url: http://localhost:9877
+
+logging:
+  level:
+    ru.clevertec : DEBUG
+
+feign:
+  client:
+    config:
+      registration :
+        logger-level: full
+
+server:
+  port: 8081
+
+
+
+
+

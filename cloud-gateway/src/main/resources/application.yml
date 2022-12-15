@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: api
+          uri: http://localhost:8081/api
+          predicates:
+            - Path=/api/**
+          filters:
+            - TokenRelay=
+
+  security:
+    oauth2:
+      client:
+        registration:
+          gateway:
+            provider: my-provider
+            client-id: api
+            client-secret: jpNRCSNgsvnR2WeUU93bI5CxHZumtTOg
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8080/login/oauth2/code/{registrationId}"
+            scope: openid
+        provider:
+          my-provider:
+            issuer-uri: http://localhost:8484/auth/realms/Clevertec
